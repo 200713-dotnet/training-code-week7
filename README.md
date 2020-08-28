@@ -63,4 +63,9 @@ az aks create --name <cluster name> --resource-group <created group name> --loca
 az aks get-credentials --name <created cluster name> --resource-group <created group> --admin # connect to K8s cluster
 
 kubectl <commands> # use control plane to interact with K8s cluster
+
+# manual deploy
+kubectl apply --filename .kubernetes/angular
+kubectl apply --filename .kubernetes/aspnet_api
+kubectl apply --filename .kubernetes/aspnet_mvc
 ```
