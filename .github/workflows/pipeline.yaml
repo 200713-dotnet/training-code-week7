@@ -5,9 +5,9 @@ jobs:
         working-directory: angular/ng10/
     runs-on: ubuntu-20.04
     steps:
-      uses: actions/checkout@v2
-      run: npm run build
-      run: npm lint
+      - uses: actions/checkout@v2
+      - run: npm run build
+      - run: npm lint
 
   build_aspnet_api:
     defaults:
@@ -15,9 +15,9 @@ jobs:
         working-directory: aspnet_api/
     runs-on: ubuntu-20.04
     steps:
-      uses: actions/checkout@v2
-      run: dotnet restore
-      run: dotnet build --no-restore
+      - uses: actions/checkout@v2
+      - run: dotnet restore
+      - run: dotnet build --no-restore
 
   build_aspnet_mvc:
     defaults:
@@ -25,9 +25,9 @@ jobs:
         working-directory: aspnet_mvc/
     runs_on: ubuntu-20.04
     steps:
-      uses: actions/checkout@v2
-      run: dotnet restore
-      run: dotnet build --no-restore
+      - uses: actions/checkout@v2
+      - run: dotnet restore
+      - run: dotnet build --no-restore
 
 name: pipeline
 
