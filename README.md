@@ -50,7 +50,7 @@ az account show # should list your current subscription
 az account set # should ONLY use if changing the current subscription
 
 # for AKS
-ssh-keygen -t rsa -b 4096 -C <email address> # generate access key for servers
+ssh-keygen -t rsa -b 4096 -C <email address> # generate access key for servers. SAVE IN A DIFFERENT LOCATION TO NOT INTEFERE WITH YOUR CURRENT SSH KEY.
 
 az group create --name <group name> --location <desired location name> # to create a resource group
 
