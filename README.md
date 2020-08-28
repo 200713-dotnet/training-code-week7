@@ -39,3 +39,26 @@
 1. what are the differences between a Server and a Node?
 1. what are the differences between AKS and K8s?
 1. do you know of any other services similar to AKS?
+
+## AKS with CLI
+
+```sh
+az login # follow the onscreen instructions to login
+
+az account show # should list your current subscription
+
+az account set # should ONLY use if changing the current subscription
+
+# for AKS
+ssh-keygen -t rsa -b 4096 -C <email address> # generate access key for servers
+
+az group create --name <group name> --location <desired location name> # to create a resource group
+
+az ad sp create-for-rbac # create a service user for access to external resources, save json document
+
+az aks create --name <cluster name> --resource-group <created group name> --location <desired location name> --ssh-key-value <created public key> --node-vm-size <Standard_B2s or Standard_B2ms> --node-count <1 or 3> --service-principal <created appId rbac> --client-secret <created password rbac> # create K8s cluster with AKS service
+
+az aks get-credentials --name <created cluster name> --resource-group <created group> --admin # connect to K8s cluster
+
+kubectl <commands> # use control plane to interact with K8s cluster
+```

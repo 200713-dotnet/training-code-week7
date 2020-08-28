@@ -29,6 +29,84 @@ jobs:
       - uses: actions/checkout@v2
       - run: dotnet restore
       - run: dotnet build --no-restore
+  
+  pack_angular:
+    defaults:
+      run:
+        working-directory: angular/ng10/
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - run: echo ${DOCKER_TOKEN} | docker login -u ${DOCKER_LOGIN} --password-stdin
+      - run: docker image build -f .docker/angular.dockerfile -t angular .
+      - run: docker image tag angular fredbelotte/ng2020
+      - run: docker image push fredbelotte/ng2020
+      - run: docker logout
+
+  pack_aspnet_api:
+    defaults:
+      run:
+        working-directory: aspnet_api/
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - run: echo ${DOCKER_TOKEN} | docker login -u ${DOCKER_LOGIN} --password-stdin
+      - run: docker image build -f .docker/aspnet_api.dockerfile -t aspnet_api .
+      - run: docker image tag aspnet_api fredbelotte/api2020
+      - run: docker image push fredbelotte/api2020
+      - run: docker logout
+  
+  pack_aspnet_mvc:
+    defaults:
+      run:
+        working-directory: aspnet_mvc/
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - run: echo ${DOCKER_TOKEN} | docker login -u ${DOCKER_LOGIN} --password-stdin 
+      - run: docker image build -f .docker/aspnet_mvc.dockerfile -t aspnet_mvc .
+      - run: docker image tag aspnet_mvc fredbelotte/mvc2020
+      - run: docker image push fredbelotte/mvc2020
+      - run: docker logout
+
+  deploy_angular:
+    defaults:
+      run:
+        working-directory: angular/ng10/
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - run: az login --service-principal ${AZURE_LOGIN} --password ${AZURE_TOKEN}
+      - run: az get-credentials --name fridayaks --resource-group fridayaks --admin
+      - run: kubectl apply --filename ./kubernetes/angular
+      - run: kubectl rollout --restart --filename ./kubernetes/angular/k8s_deployment.yaml
+      - run: az logout
+
+  deploy_aspnet_api:
+    defaults:
+      run:
+        working-directory: aspnet_api/
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - run: az login --service-principal ${AZURE_LOGIN} --password ${AZURE_TOKEN}
+      - run: az get-credentials --name fridayaks --resource-group fridayaks --admin
+      - run: kubectl apply --filename ./kubernetes/aspnet_api
+      - run: kubectl rollout --restart --filename ./kubernetes/aspnet_api/k8s_deployment.yaml
+      - run: az logout
+  
+  deploy_aspnet_mvc:
+    defaults:
+      run:
+        working-directory: aspnet_mvc/
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - run: az login --service-principal ${AZURE_LOGIN} --password ${AZURE_TOKEN}
+      - run: az get-credentials --name fridayaks --resource-group fridayaks --admin
+      - run: kubectl apply --filename ./kubernetes/aspnet_mvc
+      - run: kubectl rollout --restart --filename ./kubernetes/aspnet_mvc/k8s_deployment.yaml
+      - run: az logout
 
 name: pipeline
 
