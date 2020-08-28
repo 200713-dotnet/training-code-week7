@@ -34,6 +34,9 @@ jobs:
     defaults:
       run:
         working-directory: angular/ng10/
+    env:
+      DOCKER_LOGIN: ${{ secrets.DOCKER_LOGIN }}
+      DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
@@ -47,6 +50,9 @@ jobs:
     defaults:
       run:
         working-directory: aspnet_api/
+    env:
+      DOCKER_LOGIN: ${{ secrets.DOCKER_LOGIN }}
+      DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
@@ -60,6 +66,9 @@ jobs:
     defaults:
       run:
         working-directory: aspnet_mvc/
+    env:
+      DOCKER_LOGIN: ${{ secrets.DOCKER_LOGIN }}
+      DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
@@ -73,6 +82,9 @@ jobs:
     defaults:
       run:
         working-directory: angular/ng10/
+    env:
+      AZURE_LOGIN: ${{ secrets.AZURE_LOGIN }}
+      AZURE_TOKEN: ${{ secrets.AZURE_TOKEN }}
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
@@ -86,6 +98,9 @@ jobs:
     defaults:
       run:
         working-directory: aspnet_api/
+    env:
+      AZURE_LOGIN: ${{ secrets.AZURE_LOGIN }}
+      AZURE_TOKEN: ${{ secrets.AZURE_TOKEN }}
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
@@ -99,6 +114,9 @@ jobs:
     defaults:
       run:
         working-directory: aspnet_mvc/
+    env:
+      AZURE_LOGIN: ${{ secrets.AZURE_LOGIN }}
+      AZURE_TOKEN: ${{ secrets.AZURE_TOKEN }}
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
