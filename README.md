@@ -58,7 +58,7 @@ az ad sp create-for-rbac # create a service user for access to external resource
 
 az extension add --name aks-preview # fix an issue with az cli
 
-az aks create --name <cluster name> --resource-group <created group name> --location <desired location name> --ssh-key-value <created public key> --node-vm-size <Standard_B2s or Standard_B2ms> --node-count <1 or 3> --service-principal <created appId rbac> --client-secret <created password rbac> # create K8s cluster with AKS service
+az aks create --name <cluster name> --resource-group <created group name> --location <desired location name> --ssh-key-value <created public key> --node-vm-size <Standard_B2s or Standard_B2ms> --node-count 3 --service-principal <created appId rbac> --client-secret <created password rbac> # create K8s cluster with AKS service
 
 az aks get-credentials --name <created cluster name> --resource-group <created group> --admin # connect to K8s cluster
 
