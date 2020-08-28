@@ -1,0 +1,21 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aspnet-mvc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: aspnet-mvc
+  template:
+    metadata:
+      labels:
+        app: aspnet-mvc
+    spec:
+      containers:
+      - image: fredbelotte/mvc2020
+        name: aspnet-mvc
+        ports:
+          - containerPort: 80
+            name: aspnet-mvc-http

@@ -1,0 +1,13 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: angular
+spec:
+  ports:
+    - name: angular
+      port: 80
+      targetPort: angular-http
+  selector:
+    app: angular
+  type: LoadBalancer

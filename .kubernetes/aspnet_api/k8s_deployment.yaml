@@ -1,0 +1,21 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aspnet-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: aspnet-api
+  template:
+    metadata:
+      labels:
+        app: aspnet-api
+    spec:
+      containers:
+      - name: aspnet-api
+        image: fredbelotte/api2020
+        ports:
+          - containerPort: 80
+            name: aspnet-api-http          

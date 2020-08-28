@@ -1,0 +1,13 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: aspnet-api
+spec:
+  ports:
+    - name: aspnet-api
+      port: 80
+      targetPort: aspnet-api-http
+  selector:
+    app: aspnet-api
+  type: LoadBalancer
