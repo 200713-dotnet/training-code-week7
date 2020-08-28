@@ -76,7 +76,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: echo ${DOCKER_TOKEN} | docker login -u ${DOCKER_LOGIN} --password-stdin 
-      - run: docker image build -f ../.docker/aspnet_mvc.dockerfile -t aspnet_mvc ./aspnet_mvc/
+      - run: docker image build -f ../.docker/aspnet_mvc.dockerfile -t aspnet_mvc .
       - run: docker image tag aspnet_mvc fredbelotte/mvc2020
       - run: docker image push fredbelotte/mvc2020
       - run: docker logout
