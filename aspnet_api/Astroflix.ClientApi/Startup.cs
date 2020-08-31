@@ -26,6 +26,12 @@ namespace Astroflix.ClientApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddCors(options =>{
+              options.AddDefaultPolicy(policy =>
+              {
+                policy.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
+              });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -35,6 +41,8 @@ namespace Astroflix.ClientApi
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors();
 
             app.UseHttpsRedirection();
 

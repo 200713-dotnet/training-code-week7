@@ -4,3 +4,6 @@ node_modules/
 # aspnet
 bin/
 obj/
+
+# project
+.config/

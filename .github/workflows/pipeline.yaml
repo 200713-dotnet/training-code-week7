@@ -92,7 +92,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
-      - run: az login --service-principal ${AZURE_LOGIN} --password ${AZURE_TOKEN}
+      - run: az login --service-principal --username ${AZURE_LOGIN} --password ${AZURE_TOKEN}
       - run: az get-credentials --name fridayaks --resource-group fridayaks --admin
       - run: kubectl apply --filename ./kubernetes/angular
       - run: kubectl rollout --restart --filename ./kubernetes/angular/k8s_deployment.yaml
@@ -109,7 +109,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
-      - run: az login --service-principal ${AZURE_LOGIN} --password ${AZURE_TOKEN}
+      - run: az login --service-principal --username ${AZURE_LOGIN} --password ${AZURE_TOKEN}
       - run: az get-credentials --name fridayaks --resource-group fridayaks --admin
       - run: kubectl apply --filename ./kubernetes/aspnet_api
       - run: kubectl rollout --restart --filename ./kubernetes/aspnet_api/k8s_deployment.yaml
@@ -126,8 +126,8 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
-      - run: az login --service-principal ${AZURE_LOGIN} --password ${AZURE_TOKEN}
-      - run: az get-credentials --name fridayaks --resource-group fridayaks --admin
+      - run: az login --service-principal --username ${AZURE_LOGIN} --password ${AZURE_TOKEN}
+      - run: az get-credentials --name mondayaks --resource-group mondayaks --admin
       - run: kubectl apply --filename ./kubernetes/aspnet_mvc
       - run: kubectl rollout --restart --filename ./kubernetes/aspnet_mvc/k8s_deployment.yaml
       - run: az logout

@@ -1,0 +1,10 @@
+@model IEnumerable<Astroflix.ClientMvc.Models.MovieViewModel>
+
+<ul>
+  @foreach (var movie in Model.ToList())
+  {
+    <li>
+      <span>@movie.title</span>&nbsp;<span>@movie.genre</span>
+    </li>
+  }
+</ul>
