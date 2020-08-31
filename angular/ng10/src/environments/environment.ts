@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   serviceUrls: {
-    api: 'http://localhost:8000'
+    api: 'http://52.162.80.156'
   }
 };
 
