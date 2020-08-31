@@ -15,7 +15,7 @@ namespace Astroflix.ClientMvc.Controllers
 
     public MovieController(IConfiguration configuration)
     {
-      _http = new HttpClient() { BaseAddress = new Uri(configuration["ServiceUrls:api"]) };
+      _http = new HttpClient() { BaseAddress = new Uri(configuration["serviceUrls:api"]) };
     }
 
     [HttpGet]

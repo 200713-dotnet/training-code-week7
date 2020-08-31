@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Movie } from './movie.type';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MovieService {
-  private baseUrl = 'http://localhost:8000';
+  private baseUrl = environment.serviceUrls.api;
 
   constructor(private http: HttpClient) {}
 
