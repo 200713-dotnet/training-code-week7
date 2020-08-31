@@ -14,8 +14,21 @@ spec:
         app: aspnet-api
     spec:
       containers:
-      - name: aspnet-api
+      - - env:
+          - name: ConnectionStrings__pgsql
+            value: 'Host=localhost;Database=AstroflixDB;Username=postgres;Password=postgres;'
+        name: aspnet-api
         image: fredbelotte/api2020
         ports:
           - containerPort: 80
-            name: aspnet-api-http          
+            name: aspnet-api-http   
+      
+      - env:
+          - name: POSTGRES_PASSWORD
+            value: postgres
+        image: postgres
+        imagePullPolicy: Always
+        name: postgres
+        ports:
+          - containerPort: 5432
+            name: postgres-tcp
