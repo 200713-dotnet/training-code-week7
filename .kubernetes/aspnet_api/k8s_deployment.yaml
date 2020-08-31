@@ -14,7 +14,7 @@ spec:
         app: aspnet-api
     spec:
       containers:
-      - - env:
+      - env:
           - name: ConnectionStrings__pgsql
             value: 'Host=localhost;Database=AstroflixDB;Username=postgres;Password=postgres;'
         name: aspnet-api
