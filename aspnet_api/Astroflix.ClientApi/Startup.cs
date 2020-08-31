@@ -2,10 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Astroflix.DataAccess;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -30,6 +32,13 @@ namespace Astroflix.ClientApi
               options.AddDefaultPolicy(policy =>
               {
                 policy.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
+              });
+            });
+            services.AddDbContext<AstroflixContext>(context =>
+            {
+              context.UseNpgsql(Configuration.GetConnectionString("pgsql"), options =>
+              {
+                options.EnableRetryOnFailure(5);
               });
             });
         }
